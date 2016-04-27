@@ -57,6 +57,24 @@ class AllTest extends BaseTest
     }
   }
 
+  public function testPathIsCorrectlySet()
+  {
+    $client = $this->getClient();
+    $io_stub = $this->getMockForAbstractClass('AYLIEN\TextAPI\IO_Abstract');
+    $client->setIo($io_stub);
+    $domain = 'cars';
+    $taxonomy = 'iab-qag';
+    $client->AspectBasedSentiment(array(
+      'domain' => $domain,
+      'text' => 'test'));
+    $this->assertEquals('absa/' . $domain, $client->getIo()->getEndpoint());
+
+    $client->ClassifyByTaxonomy(array(
+      'taxonomy' => $taxonomy,
+      'text' => 'test'));
+    $this->assertEquals('classify/' . $taxonomy, $client->getIo()->getEndpoint());
+  }
+
   /**
    * @expectedException \BadMethodCallException
    */
