@@ -136,6 +136,36 @@ class TextAPI
   }
 
   /**
+   * Given a review for a product or service, analyzes the sentiment of the
+   * review towards each of the aspects of the product or review that are
+   * mentioned in it.
+   *
+   * <ul>
+   *    <li>['url']    <i><u>string</u></i> URL</i>
+   *    <li>['text']   <i><u>string</u></i> Text</i>
+   *    <li>['domain'] <i><u>string</u></i> Domain</i>
+   * </ul>
+   *
+   * @param array   $params (See above)
+   */
+  public function AspectBasedSentiment($params)
+  {
+    $params = $this->normalizeInput($params);
+    if (empty($params['text']) && empty($params['url'])) {
+      throw new \BadMethodCallException("You must either provide url or text");
+    }
+    if (empty($params['domain'])) {
+      throw new \BadMethodCallException("You must specify the domain");
+    }
+    $domain = $params['domain'];
+    unset($params['domain']);
+    $httpRequest = $this->buildHttpRequest('absa/' . $domain, $params);
+    $response = $this->executeRequest($httpRequest);
+
+    return $response;
+  }
+
+  /**
    * Classifies a body of text according to IPTC NewsCode standard into more
    * than 500 categories.
    *

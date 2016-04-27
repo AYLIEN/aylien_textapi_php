@@ -1,0 +1,46 @@
+{
+  "tests": [
+    {
+      "input": {
+        "domain": "restaurants",
+        "text": "Delicious food. Disappointing service."
+      },
+      "output": {
+        "text": "Delicious food. Disappointing service.",
+        "domain": "restaurants",
+        "aspects": [{
+          "aspect": "food",
+          "aspect_confidence": 0.9835863709449768,
+          "polarity": "positive",
+          "polarity_confidence": 0.9158667922019958
+        }, {
+        "aspect": "staff",
+        "aspect_confidence": 0.9747142195701599,
+        "polarity": "negative",
+        "polarity_confidence": 0.9969394207000732
+        }],
+        "sentences": [{
+          "text": "Delicious food.",
+          "polarity": "positive",
+          "polarity_confidence": 0.9158667922019958,
+          "aspects": [{
+            "aspect": "food",
+            "aspect_confidence": 0.9835863709449768,
+            "polarity": "positive",
+            "polarity_confidence": 0.9158667922019958
+          }]
+        }, {
+        "text": "Disappointing service.",
+        "polarity": "negative",
+        "polarity_confidence": 0.9969394207000732,
+        "aspects": [{
+          "aspect": "staff",
+          "aspect_confidence": 0.9747142195701599,
+          "polarity": "negative",
+          "polarity_confidence": 0.9969394207000732
+        }]
+        }]
+      }
+    }
+  ]
+}
