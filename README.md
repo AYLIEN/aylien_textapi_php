@@ -6,7 +6,7 @@ This is the PHP client library for AYLIEN's APIs. If you haven't already done so
 Installation
 ============
 
-To install, simply added it to your `composer.json`:
+To install, simply add it to your `composer.json`:
 
 ```json
 {

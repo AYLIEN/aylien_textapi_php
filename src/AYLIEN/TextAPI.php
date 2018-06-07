@@ -135,6 +135,32 @@ class TextAPI
     return $response;
   }
 
+    /**
+     * Analyzes sentiment towards entities found in text. Extracts mentions
+     * of named entities (Person, Organization, Location), associates a type
+     * and links them to DBPedia (where possible), and evaluates sentiment
+     * towards each of the entities. This endpoint includes some of the
+     * functionality of the entities and concepts endpoints.
+     *
+     * <ul>
+     *    <li>['url']     <i><u>string</u></i> URL</li>
+     *    <li>['text']    <i><u>string</u></i> Text</li>
+     * </ul>
+     *
+     * @param array   $params (See above)
+     */
+    public function EntityLevelSentiment($params)
+    {
+        $params = $this->normalizeInput($params);
+        if (empty($params['text']) && empty($params['url'])) {
+            throw new \BadMethodCallException("You must either provide url or text");
+        }
+        $httpRequest = $this->buildHttpRequest('elsa', $params);
+        $response = $this->executeRequest($httpRequest);
+
+        return $response;
+    }
+
   /**
    * Given a review for a product or service, analyzes the sentiment of the
    * review towards each of the aspects of the product or review that are
