@@ -339,33 +339,6 @@ class TextAPI
   }
 
   /**
-   * Returns phrases related to the provided unigram or bigram
-   *
-   * <ul>
-   *    <li>['phrase']  <i><u>string</u></i> Phrase</li>
-   *    <li>['count']   <i><u>integer</u></i> 
-   *    Number of entries in response. Max 100</li>
-   * </ul>
-   *
-   * @param array   $params (See above)
-   */
-  public function Related($params)
-  {
-    if (is_string($params)) {
-      $tmp = $params;
-      $params = array();
-      $params['phrase'] = $tmp;
-    }
-    if (empty($params['phrase'])) {
-      throw new \BadMethodCallException("You must provide a phrase");
-    }
-    $httpRequest = $this->buildHttpRequest('related', $params);
-    $response = $this->executeRequest($httpRequest);
-
-    return $response;
-  }
-
-  /**
    * Summarizes an article into a few key sentences.
    *
    * <ul>
@@ -390,54 +363,6 @@ class TextAPI
       throw new \BadMethodCallException("You must either provide url or a pair of text and title");
     }
     $httpRequest = $this->buildHttpRequest('summarize', $params);
-    $response = $this->executeRequest($httpRequest);
-
-    return $response;
-  }
-
-  /**
-   * Extracts microformats
-   *
-   * <ul>
-   *    <li>['url'] <i><u>string</u></i> URL</li>
-   * </ul>
-   *
-   * @param array   $params (See above)
-   */
-  public function Microformats($params)
-  {
-    $params = $this->normalizeInput($params);
-    if (empty($params['url'])) {
-      throw new \BadMethodCallException("You must provide a url");
-    }
-    $httpRequest = $this->buildHttpRequest('microformats', $params);
-    $response = $this->executeRequest($httpRequest);
-
-    return $response;
-  }
-
-  /**
-   * Picks the most semantically relevant class label or tag
-   *
-   * <ul>
-   *    <li>['url']                 <i><u>string</u></i> URL</li>
-   *    <li>['text']                <i><u>string</u></i> Text</li>
-   *    <li>['class']               <i><u>array</u></i> List of classes to
-   *        classify into</li>
-   *    <li>['number_of_concepts']  <i><u>integer</u></i> Specify the number
-   *        of concepts used to measure the semantic similarity between two
-   *        words.</li>
-   * </ul>
-   *
-   * @param array   $params (See above)
-   */
-  public function UnsupervisedClassify($params)
-  {
-    $params = $this->normalizeInput($params);
-    if (empty($params['text']) && empty($params['url'])) {
-      throw new \BadMethodCallException("You must either provide url or text");
-    }
-    $httpRequest = $this->buildHttpRequest('classify/unsupervised', $params);
     $response = $this->executeRequest($httpRequest);
 
     return $response;
