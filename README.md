@@ -11,7 +11,7 @@ To install, simply add it to your `composer.json`:
 ```json
 {
   "require": {
-    "aylien/textapi": "0.6.*"
+    "aylien/textapi": "0.7.*"
   }
 }
 ```
