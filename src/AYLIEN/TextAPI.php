@@ -48,7 +48,7 @@ class TextAPI
   /**
    * @var   string  Client Version
    */
-  private $version = '0.5.0';
+  private $version = '0.7.0';
 
   /**
    * Constructs the AYLIEN TextAPI client.
