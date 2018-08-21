@@ -100,8 +100,8 @@ class TextAPI
   public function Extract($params)
   {
     $params = $this->normalizeInput($params);
-    if (empty($params['url'])) {
-      throw new \BadMethodCallException("You must provide a url");
+    if (empty($params['url']) && empty($params['html'])) {
+      throw new \BadMethodCallException("You must either provide a url or html");
     }
     $httpRequest = $this->buildHttpRequest('extract', $params);
     $response = $this->executeRequest($httpRequest);
